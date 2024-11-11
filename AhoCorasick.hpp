@@ -25,7 +25,7 @@ public:
 
     void insertPattern(const std::string &pattern, int index)
     {
-        TrieNode *current = root;
+        TrieNode *current = root; 
 
         for (char c : pattern)
         {

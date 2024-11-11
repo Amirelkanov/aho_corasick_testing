@@ -1,8 +1,6 @@
-CXXFLAGS = -Wall -Werror -Wextra -std=c++20
+CXXFLAGS = -Wall -Werror -Wextra -o0 -fno-inline -std=c++11 -fno-exceptions
 EXE=main.out
 BUILD_PATH=./
-
-.SILENT: clean clean_test_files clean_gcov_files clean_lcov_files
 
 all: main.o
 	g++ $(GCC_FLAGS) main.cpp -o $(BUILD_PATH)$(EXE) 
@@ -33,3 +31,7 @@ clean:
 	rm -rf $(BUILD_PATH)$(EXE)
 	rm -rf $(BUILD_PATH)main.o
 	echo "Build files has been cleaned."
+
+.SILENT: clean clean_test_files clean_gcov_files clean_lcov_files
+
+.PHONY: clean clean_test_files clean_gcov_files clean_lcov_files
