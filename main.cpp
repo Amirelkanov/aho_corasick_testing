@@ -1,26 +1,24 @@
 #include <iostream>
+#include "AhoCorasick.hpp"
+#include <cassert>
 
-int classifier(int n) {
-    int num = 1;
-    if (n == 0) {
-        return 0;
-    }
-    if (n % 2 == 0) {
-        num += 1;
-    }
-    if (n < 0) {
-        num -= 1;
-    } else {
-        num += 2;
-    }
+void ahoCorasickDefaultTest()
+{
+    AhoCorasick ac;
+    ac.insertPattern("he", 0);
+    ac.insertPattern("she", 1);
+    ac.insertPattern("his", 2);
+    ac.insertPattern("hers", 3);
 
-    return num;
+    ac.build();
+
+    std::vector<int> matches = ac.search_for_patterns("ushers");
+
+    assert(matches.size() == 3);
 }
 
-int main() {
-  classifier(0);
-  classifier(-2);
-  classifier(2);
-  return 0;
+int main()
+{
+    ahoCorasickDefaultTest();
+    return 0;
 }
-

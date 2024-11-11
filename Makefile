@@ -11,7 +11,7 @@ gen_gcov_report: main.o
 	$(MAKE) -s clean_gcov_files
 	g++ $(CXXFLAGS) --coverage main.cpp -o $(BUILD_PATH)$(EXE)
 	$(BUILD_PATH)$(EXE)
-	lcov -t "Report" -c -d $(BUILD_PATH) --rc lcov_branch_coverage=1 --output-file $(BUILD_PATH)coverage.info
+	lcov -t "Report" -c --no-external -d $(BUILD_PATH) --rc lcov_branch_coverage=1 --output-file $(BUILD_PATH)coverage.info
 	genhtml $(BUILD_PATH)coverage.info  --rc genhtml_branch_coverage=1 --output-directory $(BUILD_PATH)report/
 	echo "Report available at $(BUILD_PATH)report/index.html"
 	
