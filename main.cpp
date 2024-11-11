@@ -5,49 +5,67 @@
 #include "AhoCorasick.hpp"
 #include <cassert>
 
-void ahoCorasickDefaultTest()
+void emptyPatternTest()
+{
+    AhoCorasick ac;
+    ac.build();
+    assert(ac.search_for_patterns("Hello!").empty());
+}
+
+void oneMatchingPatternTest()
 {
     AhoCorasick ac;
     ac.insertPattern("he", 0);
-    ac.insertPattern("she", 1);
-    ac.insertPattern("his", 2);
-    ac.insertPattern("hers", 3);
-
     ac.build();
 
-    std::vector<int> matches = ac.search_for_patterns("ushers");
-
-    assert(matches.size() == 3);
+    assert(ac.search_for_patterns("ushers").size() == 1);
 }
 
-void ahoCorasickEmptyTest()
+void noMathicngPatternsTest()
 {
     AhoCorasick ac;
+    ac.insertPattern("Hello", 0);
+    ac.insertPattern("World", 1);
     ac.build();
 
-    std::vector<int> matches = ac.search_for_patterns("ushers");
-
-    assert(matches.empty());
+    assert(ac.search_for_patterns("abacaba").size() == 0);
 }
 
-void ahoCorasickOnePatternTest()
+void overlappingPatternsTest()
 {
     AhoCorasick ac;
+    ac.insertPattern("abc", 0);
+    ac.insertPattern("abcd", 1);
+    ac.insertPattern("abcde", 2);
+    ac.build();
+
+    assert(ac.search_for_patterns("abcde").size() == 3);
+}
+
+// Тут суфф ссылки +-интереснее: ведут в другие ветки бора (примерно можно глянуть у итмо в конспекте)
+void suffixLinkTest()
+{
+    AhoCorasick ac;
+    ac.insertPattern("she", 0);
     ac.insertPattern("he", 0);
-
     ac.build();
+    assert(ac.search_for_patterns("hehe").size() == 2);
+}
 
-    std::vector<int> matches = ac.search_for_patterns("ushers");
-
-    assert(matches.size() == 1);
+void runTests()
+{
+    std::cout << "Running tests..." << std::endl;
+    emptyPatternTest();
+    oneMatchingPatternTest();
+    noMathicngPatternsTest();
+    overlappingPatternsTest();
+    suffixLinkTest();
+    std::cout << "All tests passed!" << std::endl;
 }
 
 int main()
 {
-    ahoCorasickDefaultTest();
-    ahoCorasickEmptyTest();
-    ahoCorasickOnePatternTest();
-
+    runTests();
     return 0;
 }
 // LCOV_EXCL_STOP

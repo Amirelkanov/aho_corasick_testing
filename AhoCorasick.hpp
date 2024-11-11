@@ -25,7 +25,7 @@ public:
 
     void insertPattern(const std::string &pattern, int index)
     {
-        TrieNode *current = root; 
+        TrieNode *current = root;
 
         for (char c : pattern)
         {
@@ -101,10 +101,9 @@ public:
         return pattern_matches_positions;
     }
 
-public:
+private:
     TrieNode *root;
 
-private:
     std::vector<int> pattern_matches_positions;
 
     void add_pattern_match(TrieNode *node)
