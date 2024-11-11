@@ -19,8 +19,8 @@ int classifier(int n) {
 
 int main() {
   classifier(0);
+  classifier(-2);
   classifier(2);
-  std::cout << "halo";
   return 0;
 }
 
