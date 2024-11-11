@@ -1,4 +1,4 @@
-CXXFLAGS = -Wall -Werror -Wextra -o0 -fno-inline -std=c++11 -fno-exceptions
+CXXFLAGS = -Wall -Werror -Wextra -g -o0 -fno-inline -std=c++11 -fno-exceptions
 EXE=main.out
 BUILD_PATH=./
 
