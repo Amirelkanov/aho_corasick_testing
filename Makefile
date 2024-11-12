@@ -26,13 +26,11 @@ clean_gcov_files:
 	rm -rf $(BUILD_PATH)*.gcno
 
 clean_lcov_files: 
-	rm -rf $(BUILD_PATH)report
 	rm -rf $(BUILD_PATH)coverage.info
 
 clean_clangpp_files:
 	rm -rf $(BUILD_PATH)*.profraw
 	rm -rf $(BUILD_PATH)*.profdata
-	rm -rf $(BUILD_PATH)MCDC_report.txt
 
 clean_test_files:
 	$(MAKE) -s clean_lcov_files
